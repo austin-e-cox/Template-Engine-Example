@@ -86,9 +86,12 @@ async function getEmployeeData() {
         case 'Intern':
             employeeDataPrompt = [...employeePrompt, ...internPrompt];
             break;
+        default:
+            throw(Error(`employee type not recognised: ${e.type}`))
     }
     //console.log(employeeDataPrompt);
     let employeeData = await inquirer.prompt(employeeDataPrompt);
+    employeeData.type = employeeType;
     return employeeData;
 }
 
@@ -97,7 +100,7 @@ async function getEmployees(){
     do {
         let employeeData = await getEmployeeData();
         let confirmInput = await inquirer.prompt(confirmEmployeePrompt);
-        console.log(confirmInput);
+        //console.log(confirmInput);
         if (!confirmInput.confirmEmployee){
             continue;
         }
@@ -112,8 +115,43 @@ async function getEmployees(){
 }
 
 async function main(){
-    let employees = await getEmployees();
+    let employeeData = await getEmployees();
+    let employees = [];
+    // console.log(employeeData);
+
+    // generate employee objects
+    employeeData.forEach(e => {
+        switch(e.type){
+            case 'Engineer':
+                employees.push(new Engineer(e.name, e.id, e.email, e.github));
+                break;
+            case 'Manager':
+                employees.push(new Manager(e.name, e.email, e.id, e.officeNumber));
+                break;
+            case 'Intern':
+                employees.push(new Intern(e.name, e.id, e.email, e.school));
+                break;
+            default:
+                throw(Error(`employee type not recognised: ${e.type}`));
+        }
+    });
+    //convert responses to classes
     console.log(employees);
+    let employeeHtml = render(employees);
+
+    // ensure output directory exists
+    try {
+        fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+    }
+    catch (err) {
+        throw(err);
+    }
+    //console.log(employeeHtml);
+    // write html file with employee data
+    fs.writeFile(outputPath, employeeHtml, function(err) {
+        if (err) throw err;
+        console.log(`Saved new html as ${outputPath}`);
+    });
 }
 
 main();
