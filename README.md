@@ -9,7 +9,7 @@ In VS Code, you may open the terminal (Ctrl+\`), navigate to the main project fo
 Choose the employee type and insert their data. Continue adding employees until you are finished. Once finished, the code automatically generates the html file, and you just load that page to view the result (/output/team.html).
 
 ## Access
-Repo: https://github.com/austin-e-cox/Template-Engine-Example
+Repo: https://austin-e-cox.github.io/Template-Engine-Example/
 
 ## Preview:
 ![Tool preview](/preview.gif?raw=true "Tool Preview")
