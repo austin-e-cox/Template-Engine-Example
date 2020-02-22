@@ -126,7 +126,7 @@ async function main(){
                 employees.push(new Engineer(e.name, e.id, e.email, e.github));
                 break;
             case 'Manager':
-                employees.push(new Manager(e.name, e.email, e.id, e.officeNumber));
+                employees.push(new Manager(e.name, e.id, e.email, e.officeNumber));
                 break;
             case 'Intern':
                 employees.push(new Intern(e.name, e.id, e.email, e.school));
@@ -136,8 +136,9 @@ async function main(){
         }
     });
     //convert responses to classes
-    console.log(employees);
+    //console.log(employees);
     let employeeHtml = render(employees);
+    //console.log(employeeHtml);
 
     // ensure output directory exists
     try {
