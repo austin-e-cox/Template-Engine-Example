@@ -1,5 +1,5 @@
 # Template-Engine-Example
-Use Node to generate a team profile page. Node takes input form CLI and populates premade templates which are merged to a master html page.
+Uses Node to generate a team profile page. Node takes input form CLI and populates premade templates which are merged to a master html page.
 
 ## Functionality
 This project uses CLI to populate premade html pages, then merges and serves the resulting html. The user initially inputs their team data into the CLI, then the code takes this list of member data and populates classes of each team member type. Then the team member classes are passed to a renderer which generates html for each team member. Then this html is merged into an overall page html and is served to the user.
